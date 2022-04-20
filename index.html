@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.js"></script>
+        <title>
+            Trading Application
+        </title>
+        <link rel="icon" href="./IMG/cash-coin.svg" type="image/icon">
+        <link rel="stylesheet" href="./CSS/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="./CSS/styles.css" type="text/css">
+    </head>
+    <body>
+        <div id="data">
+            <nav class="navbar navbar-light bg-info bg-gradient">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="./index.html">
+                    <img src="./IMG/cash-coin.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    Trading Application
+                  </a>
+                </div>
+            </nav>
+            <div class="c1">
+                <div class="mb-3">
+                    <div>
+                        <label for="formFile" class="form-label">Upload Input Data File</label>
+                        <input class="form-control" type="file"  id="formFile">
+                    </div>
+                    <!-- <div id="subB">
+                        <button style="margin-top: 30px;" type="button" class="btn btn-primary" onclick="UploadProcess()">Submit file</button>
+                    </div>
+                    <div id="runB">
+                        <button style="margin-top: 30px;" type="button" class="btn btn-primary" onclick="a3()">Run</button>
+                    </div>
+                    <div id="plotB">
+                        <button style="margin-top: 30px;" type="button" class="btn btn-primary" onclick="plt()">Plot</button>
+                    </div> -->
+                </div>
+                <p id="status"></p>
+            </div>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-primary" onclick="UploadProcess()">Submit File</button>
+                  <button type="button" class="btn btn-primary" onclick="a3()">Run</button>
+                  <button type="button" class="btn btn-primary" onclick="plt()">Plot</button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Open Reports
+                  </button>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row row-cols-2">
+                                  <div class="col">
+                                    <div class="c2">
+                                        <div class="container">
+                                            <canvas id="myChart1" width="500" height="400"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="c2">
+                                        <div class="container">
+                                            <canvas id="myChart2" width="500" height="400"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="c2">
+                                    <div class="container">
+                                        <canvas id="myChart3" width="500" height="400"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c1">
+                <div id="ExcelTable"></div>
+                <!-- <div class="container">
+                    <canvas id="myChart" width="400" height="300"></canvas>
+                </div> -->
+            </div>
+        </div>
+        <script type="text/javascript" src="./JS/script.js"></script>
+        <script type="text/javascript" src="./JS/bootstrap.js"></script>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+body {
+  background-color: gray;
+}
+#data {
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: aquamarine;
+  height: 100vh;
+}
+.c1 {
+  margin: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  /* background-color: aquamarine; */
+}
+.c2{
+  margin: auto;
+}
+button {
+  width: 150px;
+  margin-right: 30px;
+}
+.btn-toolbar {
+  margin: auto;
+  margin-left: 12%;
+}
+table,
+th,
+td {
+  padding: 5px;
+  border: 2px solid black;
+}
+#ExcelTable {
+  margin: auto;
+  margin-left: 25%;
+  margin-right: 25%;
+}
