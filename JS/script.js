@@ -1,9 +1,10 @@
-inData = [];
+//inData = [];
 var itr=[];
 var ppv=[];
 var ppb=[];
 var psd =[];
 var pv=[];
+var fpv=[];
 var ip=[0.7,0.3];//c
 var xb=[];
 var gb=[];
@@ -37,6 +38,7 @@ function UploadProcess() {
                 reader.readAsArrayBuffer(fileUpload.files[0]);
             }
             document.getElementById('status').innerHTML="File Uploaded successfully";
+            document.getElementById('pClass').innerHTML="Prosumer Classification";
         }else {
             alert("This browser does not support HTML5.");
         }
@@ -103,8 +105,9 @@ function GetTableFromExcel(data) {
         psd[j] = [];
     }
     //To display table
+    // document.getElementById("pClassi").innerHTML="Prosumer Classification";
     var ExcelTable = document.getElementById("ExcelTable");
-    ExcelTable.innerHTML = "";
+    // ExcelTable.innerHTML = "";
     ExcelTable.appendChild(myTable);
 }
 
@@ -178,6 +181,7 @@ function a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
             psd[i].push(sd[i]);
         }
         pv = sua(pv,muc(sua(suba(sj,gs),ds),0.0003));
+        fpv = pv;
         var flg=0;
         for(var z=0;z<s;z++){
             if(Math.abs(sj[z]+ds[z]-gs[z])>1){
@@ -186,7 +190,7 @@ function a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
         }
         if(flg==0){
             console.log("Final Price");
-            console.log(pv);
+            //console.log(pv);
             document.getElementById('status').innerHTML="Process Completed";
             return;
         }
@@ -333,7 +337,7 @@ function plt(){
 }
 function output(){
     var r=s+1;
-    var c=b+1;
+    var c=b+3;
     var table = document.createElement("table");
     // table.border = "1";
     for (let x = 0; x < r; x++) {
@@ -341,17 +345,35 @@ function output(){
         for(let y=0;y<c;y++){
             var cell = row.insertCell(-1);
             if(x==0&&y!=0){
-                cell.innerHTML = "<b>Buyer "+(y)+"</b>";
+                if(y==1){
+                    cell.innerHTML = "<b>Price</b>"; 
+                }
+                else if(y==2){
+                    cell.innerHTML = "<b>Probability</b>";
+                }
+                else{
+                    cell.innerHTML = "<b>Buyer "+(y-2)+"</b>";
+                }
             }
             else if(y==0&&x!=0){
                 cell.innerHTML = "<b>Seller "+(x)+"</b>";
             }
             else if(x!=0&&y!=0){
-                console.log();
-                cell.innerHTML = (xt[y-1]*a[x-1]).toFixed(2);
+                if(y==1){
+                    console.log(pv);
+                    cell.innerHTML = (fpv[x-1]).toFixed(2);
+                }
+                else if(y==2){
+                    cell.innerHTML = (a[x-1]).toFixed(2);
+                }
+                else{
+                    cell.innerHTML = (xt[y-3]*a[x-1]).toFixed(2);
+                }
+                
             }
         }
     }
+    document.getElementById('pOut').innerHTML = "Output";
     var res = document.getElementById("outputTable");
     res.appendChild(table);   
 }
