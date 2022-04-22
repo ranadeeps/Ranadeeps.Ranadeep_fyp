@@ -1,14 +1,4 @@
 inData = [];
-// var pv=[4,4];
-// var ip=[0.7,0.3];//c
-// var xb=[3,1,3];
-// var gb=[5,10,5];
-// var gs=[30,30];
-// var lmd=[5,5,5];//c
-// var tt=0.5;//c
-// var ds=[10,10];
-// var b=0;
-// var s=0;
 var itr=[];
 var ppv=[];
 var ppb=[];
@@ -155,13 +145,15 @@ function a1(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
         }
     }
 }
+var a;
+var xt=[];
 function a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
     var k = 0;
     var w=[];
-    var xt=[];
+    //var xt=[];
     var sd;
     var sj;
-    var a;
+    //var a;
     while(1){
         k=k+1;
         itr.push(k);
@@ -307,6 +299,7 @@ const ctx3 = document.getElementById('myChart3').getContext('2d');
     });
     
 function plt(){
+    output();
     for(var i=0;i<s;i++){
         const newDataSet = {
             label:'Seller '+(i+1)+'',
@@ -337,6 +330,30 @@ function plt(){
     myChart1.update();
     myChart2.update();
     myChart3.update();
+}
+function output(){
+    var r=s+1;
+    var c=b+1;
+    var table = document.createElement("table");
+    // table.border = "1";
+    for (let x = 0; x < r; x++) {
+        var row = table.insertRow(-1);
+        for(let y=0;y<c;y++){
+            var cell = row.insertCell(-1);
+            if(x==0&&y!=0){
+                cell.innerHTML = "<b>Buyer "+(y)+"</b>";
+            }
+            else if(y==0&&x!=0){
+                cell.innerHTML = "<b>Seller "+(x)+"</b>";
+            }
+            else if(x!=0&&y!=0){
+                console.log();
+                cell.innerHTML = (xt[y-1]*a[x-1]).toFixed(2);
+            }
+        }
+    }
+    var res = document.getElementById("outputTable");
+    res.appendChild(table);   
 }
 
 
@@ -428,3 +445,13 @@ function diva(arr1,arr2){
 //     ],
 //     borderWidth: 1
 // }
+// var pv=[4,4];
+// var ip=[0.7,0.3];//c
+// var xb=[3,1,3];
+// var gb=[5,10,5];
+// var gs=[30,30];
+// var lmd=[5,5,5];//c
+// var tt=0.5;//c
+// var ds=[10,10];
+// var b=0;
+// var s=0;
