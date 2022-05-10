@@ -169,8 +169,6 @@ function a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
         for(var i=0;i<s;i++){
             ppv[i].push(pv[i]);
         }
-        // ppv1.push(pv[0]);
-        // ppv2.push(pv[1]);
         a = a1(pv,ip,xb,gb,gs,lmd,tt,ds,b,s);
         for(var i=0;i<s;i++){
             ppb[i].push(a[i]);
@@ -196,7 +194,6 @@ function a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
         }
         if(flg==0){
             console.log("Final Price");
-            //console.log(pv);
             document.getElementById('status').innerHTML="Process Completed";
             return;
         }
