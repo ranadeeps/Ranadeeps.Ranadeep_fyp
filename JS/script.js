@@ -14,6 +14,8 @@ var tt=0.5;//c
 var ds=[];
 var b=0;
 var s=0;
+
+
 function UploadProcess() {
     var fileUpload = document.getElementById("formFile");
     var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
@@ -45,8 +47,9 @@ function UploadProcess() {
     } else {
         alert("Please upload a valid Excel file.");
     }
-    
 };
+
+
 function GetTableFromExcel(data) {
     var workbook = XLSX.read(data, {
         type: 'binary'
@@ -225,6 +228,17 @@ function a3(){
         }
         a2([4,4],[0.6,0.4],[3,2,3],[5,10,5],[20,30],[5,5,5],0.5,[10,10],3,2);
     }
+    else if(so.value == 's3'){
+        document.getElementById('sample3').style.display = "block";
+        s=3;
+        b=2;
+        for(var j=0;j<3;j++){
+            ppv[j] = [];
+            ppb[j] = [];
+            psd[j] = [];  
+        }
+        a2([4,4,4],[0.3,0.5,0.2],[3,2],[5,10],[10,20,20],[5,5],0.5,[5,10,12],2,3);       
+    }
     else{
         a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s);
     }
@@ -377,7 +391,7 @@ function output(){
             var cell = row.insertCell(-1);
             if(x==0&&y!=0){
                 if(y==1){
-                    cell.innerHTML = "<b>Price</b>"; 
+                    cell.innerHTML = "<b>Price (in Rupees)</b>"; 
                 }
                 else if(y==2){
                     cell.innerHTML = "<b>Probability</b>";
@@ -392,13 +406,13 @@ function output(){
             else if(x!=0&&y!=0){
                 if(y==1){
                     console.log(pv);
-                    cell.innerHTML = (fpv[x-1]).toFixed(2);
+                    cell.innerHTML = (fpv[x-1]).toFixed(2) ;
                 }
                 else if(y==2){
                     cell.innerHTML = (a[x-1]).toFixed(2);
                 }
                 else{
-                    cell.innerHTML = (xt[y-3]*a[x-1]).toFixed(2);
+                    cell.innerHTML = (xt[y-3]*a[x-1]).toFixed(2) + " KW";
                 }
                 
             }
