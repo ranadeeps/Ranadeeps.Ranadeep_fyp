@@ -5,11 +5,11 @@ var ppb=[];
 var psd =[];
 var pv=[];
 var fpv=[];
-var ip=[0.7,0.3];//c
+var ip=[];//c
 var xb=[];
 var gb=[];
 var gs=[];
-var lmd=[5,5,5];//c
+var lmd=[];//c
 var tt=0.5;//c
 var ds=[];
 var b=0;
@@ -59,13 +59,13 @@ function GetTableFromExcel(data) {
     headerCell.innerHTML = "Prosumer";
     row.appendChild(headerCell);
     headerCell = document.createElement("TH");
-    headerCell.innerHTML = "Price";
+    headerCell.innerHTML = "Price (in Rupees)";
     row.appendChild(headerCell);
     headerCell = document.createElement("TH");
-    headerCell.innerHTML = "Generation";
+    headerCell.innerHTML = "Generation (in KW)";
     row.appendChild(headerCell);
     headerCell = document.createElement("TH");
-    headerCell.innerHTML = "Demand";
+    headerCell.innerHTML = "Demand (in KW)";
     row.appendChild(headerCell);
     headerCell = document.createElement("TH");
     headerCell.innerHTML = "Type";
@@ -103,15 +103,21 @@ function GetTableFromExcel(data) {
         ppv[j] = [];
         ppb[j] = [];
         psd[j] = [];
+        ip[j] = 0.1;
     }
+    for(var j=0;j<b;j++){
+        lmd[j] = 5;
+    }
+    for(var j=0;j<10-s;j++){ 
+        ip[(Math.floor(Math.random()*(10-s)))%s] += 0.1;
+    }
+    
     //To display table
-    // document.getElementById("pClassi").innerHTML="Prosumer Classification";
     var ExcelTable = document.getElementById("ExcelTable");
-    // ExcelTable.innerHTML = "";
     ExcelTable.appendChild(myTable);
 }
 
-//a1(pv,ip,xb,gb,gs,lmd,tt,ds,b,s);
+
 function a1(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
     var k=0;
     var w=[];
@@ -136,7 +142,7 @@ function a1(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
             }
         }
         var si = su(mua(ip,sig));
-        ip = sua(ip,muc(mua(ip,subc(sig,si)),0.0003));
+        ip = sua(ip,muc(mua(ip,subc(sig,si)),0.0004));
         var flg=0;
         for(var z=0;z<s;z++){
             if(Math.abs(sig[z]-si)>1){
@@ -148,15 +154,15 @@ function a1(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
         }
     }
 }
+
+
 var a;
 var xt=[];
 function a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
     var k = 0;
     var w=[];
-    //var xt=[];
     var sd;
     var sj;
-    //var a;
     while(1){
         k=k+1;
         itr.push(k);
@@ -180,7 +186,7 @@ function a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
         for(var i=0;i<s;i++){
             psd[i].push(sd[i]);
         }
-        pv = sua(pv,muc(sua(suba(sj,gs),ds),0.0003));
+        pv = sua(pv,muc(sua(suba(sj,gs),ds),0.0004));
         fpv = pv;
         var flg=0;
         for(var z=0;z<s;z++){
@@ -196,9 +202,38 @@ function a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s){
         }
     }
 }
+
+
 function a3(){
-    a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s);
+    so = document.getElementById('samples');
+    if(so.value == 's1'){
+        document.getElementById('sample1').style.display = "block";
+        s=2;
+        b=3;
+        for(var j=0;j<2;j++){
+            ppv[j] = [];
+            ppb[j] = [];
+            psd[j] = [];  
+        }
+        a2([4,4],[0.7,0.3],[3,1,3],[5,10,5],[30,30],[5,5,5],0.5,[10,10],3,2);
+    }
+    else if(so.value == 's2'){
+        document.getElementById('sample2').style.display = "block";
+        s=2;
+        b=3;
+        for(var j=0;j<2;j++){
+            ppv[j] = [];
+            ppb[j] = [];
+            psd[j] = [];  
+        }
+        a2([4,4],[0.6,0.4],[3,2,3],[5,10,5],[20,30],[5,5,5],0.5,[10,10],3,2);
+    }
+    else{
+        a2(pv,ip,xb,gb,gs,lmd,tt,ds,b,s);
+    }
 }
+
+
 const ctx1 = document.getElementById('myChart1').getContext('2d');
     const myChart1 = new Chart(ctx1,{
         type: 'bubble',
@@ -227,12 +262,11 @@ const ctx1 = document.getElementById('myChart1').getContext('2d');
                       text: 'Iteration'
                     }
                   }
-                // y: {
-                //     beginAtZero: true
-                // }
             }
         }
     });
+
+
 const ctx2 = document.getElementById('myChart2').getContext('2d');
     const myChart2 = new Chart(ctx2,{
         type: 'bubble',
@@ -261,12 +295,12 @@ const ctx2 = document.getElementById('myChart2').getContext('2d');
                       text: 'Iteration'
                     }
                   }
-                // y: {
-                //     beginAtZero: true
-                // }
             }
         }
     });
+
+
+
 const ctx3 = document.getElementById('myChart3').getContext('2d');
     const myChart3 = new Chart(ctx3,{
         type: 'bubble',
@@ -295,13 +329,11 @@ const ctx3 = document.getElementById('myChart3').getContext('2d');
                       text: 'Iteration'
                     }
                   }
-                // y: {
-                //     beginAtZero: true
-                // }
             }
         }
     });
     
+
 function plt(){
     output();
     for(var i=0;i<s;i++){
@@ -335,6 +367,8 @@ function plt(){
     myChart2.update();
     myChart3.update();
 }
+
+
 function output(){
     var r=s+1;
     var c=b+3;

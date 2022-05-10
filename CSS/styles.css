@@ -5,7 +5,7 @@ body {
   margin-left: 20%;
   margin-right: 20%;
   background-color: aquamarine;
-  height: 100vh;
+  height: 1000px;
 }
 .c1 {
   margin: 20px;
@@ -32,6 +32,10 @@ td {
 }
 #ExcelTable,#outputTable {
   margin: auto;
-  margin-left: 21%;
-  margin-right: 21%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+select{
+  margin-top: 10px;
+
 }

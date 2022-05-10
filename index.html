@@ -29,6 +29,12 @@
                     <div>
                         <label for="formFile" class="form-label">Upload Input Data File</label>
                         <input class="form-control" type="file"  id="formFile">
+                        <select id="samples" class="form-select" aria-label="Default select example">
+                            <option selected>Select Sample Input</option>
+                            <option value="s1">Sample 1</option>
+                            <option value="s2">Sample 2</option>
+                            <option value="s3">Sample 3</option>
+                        </select>
                     </div>
                     <!-- <div id="subB">
                         <button style="margin-top: 30px;" type="button" class="btn btn-primary" onclick="UploadProcess()">Submit file</button>
@@ -96,6 +102,49 @@
             <div class="c1">
                 <div id="ExcelTable">
                     <p id="pClass"></p>
+                    <table id="sample1" style="display: none;">
+                        <tbody>
+                            <tr><th>Prosumer</th>
+                            <th>Price (in Rupees)</th>
+                            <th>Generation (in KW)</th>
+                            <th>Demand (in KW)</th>
+                            <th>Type</th>
+                        </tr><tr>
+                            <td>1</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>8</td>
+                            <td>Buyer</td>
+                        </tr><tr>
+                            <td>2</td>
+                            <td>4</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>Buyer</td>
+                        </tr><tr>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>8</td>
+                            <td>Buyer</td>
+                        </tr><tr>
+                            <td>4</td>
+                            <td>4</td>
+                            <td>30</td>
+                            <td>10</td>
+                            <td>Seller</td>
+                        </tr><tr>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>30</td>
+                            <td>10</td>
+                            <td>Seller</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="sample2" style="display: none ;">
+                    <tbody><tr><th>Prosumer</th><th>Price (in Rupees)</th><th>Generation (in KW)</th><th>Demand (in KW)</th><th>Type</th></tr><tr><td>1</td><td>4</td><td>5</td><td>8</td><td>Buyer</td></tr><tr><td>2</td><td>4</td><td>10</td><td>12</td><td>Buyer</td></tr><tr><td>3</td><td>4</td><td>5</td><td>8</td><td>Buyer</td></tr><tr><td>4</td><td>4</td><td>20</td><td>10</td><td>Seller</td></tr><tr><td>5</td><td>4</td><td>30</td><td>10</td><td>Seller</td></tr></tbody>
+                </table>
                 </div>
                 <!-- <div class="container">
                     <canvas id="myChart" width="400" height="300"></canvas>
